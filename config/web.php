@@ -21,6 +21,7 @@ $config = [
         ],
         'user' => [
             'identityClass' => 'app\models\User',
+            'loginUrl' => ['mos/login'], // ระบุหน้า login
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -47,12 +48,16 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'mos' => 'mos/index',
+                'mos/view/<id:\d+>' => 'mos/view',
             ],
         ],
         
     ],
     'params' => $params,
+    'defaultRoute' => 'mos/login', // ทำให้หน้า login เป็นหน้าแรก
 ];
+
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
@@ -70,5 +75,6 @@ if (YII_ENV_DEV) {
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 }
+
 
 return $config;

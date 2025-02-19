@@ -1,109 +1,25 @@
-<!-- <div id="mui-app"></div>
+<?php
+use yii\helpers\Html;
+use yii\helpers\Url;
 
-<script>
-    const { Button, Typography } = window.MaterialUI;
+?>
 
-    ReactDOM.render(
-        React.createElement('div', {},
-            React.createElement(Typography, { variant: 'h4' }, '👋 สวัสดีจาก MUI!'),
-            React.createElement(Button, { variant: 'contained', color: 'primary' }, 'กดฉัน!')
-        ),
-        document.getElementById('mui-app')
-    );
-</script> -->
-
-<div class="container px-4">
-    <div class="row gx-5 gy-4">
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+<div class="container">
+    <div class="row">
+        <?php foreach ($products as $product): ?>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+                <div class="card w-100 shadow-sm">
+                    <img src="<?= Html::encode($product->img) ?>" class="card-img-top"
+                        alt="<?= Html::encode($product->title) ?>">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title"><?= Html::encode($product->title) ?></h5>
+                        <p class="card-text flex-grow-1"><?= Html::encode($product->description) ?></p>
+                        <a href="<?= Url::to(['mos/indexId', 'id' => $product->id]) ?>" class="btn btn-primary w-100 mt-auto">
+                            <p class="card-text flex-grow-1"><?= Html::encode($product->price) ?></p>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
-
 </div>
-
-<br>
-
-<div class="container px-4">
-    <div class="row gx-5 gy-4">
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-

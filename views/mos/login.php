@@ -1,52 +1,34 @@
 <?php
-
-/** @var yii\web\View $this */
-/** @var yii\bootstrap5\ActiveForm $form */
-
-/** @var app\models\LoginForm $model */
-
-use yii\bootstrap5\ActiveForm;
-use yii\bootstrap5\Html;
-
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 $this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->registerCssFile('@web/css/mos.css', ['depends' => [\yii\web\YiiAsset::class]]);
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>กรุณาเข้าสู่ระบบ</p>
+<?php
+// แสดงข้อความสำเร็จ
+if (Yii::$app->session->hasFlash('success')) {
+    $success = Html::encode(Yii::$app->session->getFlash('success'));
+    $this->registerJs("alert('$success');");
+}
+?>
 
-    <div class="row">
-        <div class="col-lg-5">
 
-            <?php $form = ActiveForm::begin([
-                'id' => 'login-form',
-                'fieldConfig' => [
-                    'template' => "{label}\n{input}\n{error}",
-                    'labelOptions' => ['class' => 'col-lg-1 col-form-label mr-lg-3'],
-                    'inputOptions' => ['class' => 'col-lg-3 form-control'],
-                    'errorOptions' => ['class' => 'col-lg-7 invalid-feedback'],
-                ],
-            ]); ?>
+<div class="site-login d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="card shadow p-4" style="width: 350px;">
+        <h3 class="text-center mb-4"><?= Html::encode($this->title) ?></h3>
 
-            <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+        <?php $form = ActiveForm::begin(); ?>
+        <?= $form->field($model, 'username')->textInput(['placeholder' => 'Username'])->label(false) ?>
+        <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Password'])->label(false) ?>
+        <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
-            <?= $form->field($model, 'password')->passwordInput() ?>
+        <div class="form-group text-center">
+            <?= Html::submitButton('เข้าสู่ระบบ', ['class' => 'btn btn-primary w-100 mb-2']) ?>
 
-            <?= $form->field($model, 'rememberMe')->checkbox([
-                'template' => "<div class=\"custom-control custom-checkbox\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            ]) ?>
-
-            <div class="form-group">
-                <div>
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-            </div>
-
-            <?php ActiveForm::end(); ?>
-
-         
-
+            <?= Html::a('สมัครสมาชิก', ['mos/register'], ['class' => 'btn btn-secondary w-100']) ?>
         </div>
+
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
